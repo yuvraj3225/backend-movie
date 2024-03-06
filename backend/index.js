@@ -6,11 +6,11 @@ const mongoose = require("mongoose");
 require('dotenv').config();
 
 const app = express();
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 3000;
 
-// Specify allowed origins
+// Specify allowed origins without trailing slashes
 app.use(cors({
-  origin: ['https://entertainment-full-stack-project.vercel.app/', 'https://entertainment-full-stack-project.vercel.app/'],
+  origin: ['https://entertainment-full-stack-project.vercel.app'],
 }));
 
 app.use(express.json());
@@ -26,7 +26,7 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
-    console.log("DB Connetion Successfull");
+    console.log("DB Connection Successful");
   })
   .catch((err) => {
     console.log(err.message);
@@ -35,9 +35,8 @@ mongoose
 // Handle CORS preflight requests for all routes
 app.options('*', cors());
 
-
 app.use("/api/user", userRoutes);
 
 app.listen(PORT, () => {
-  console.log(`server started on port ${PORT}`);
+  console.log(`Server started on port ${PORT}`);
 });
