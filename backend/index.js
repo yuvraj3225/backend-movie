@@ -10,7 +10,7 @@ const PORT = process.env.PORT
 
 // Specify allowed origins
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://your-production-domain.com'],
+  origin: ['http://localhost:3000', 'https://entertainment-full-stack-project.vercel.app/'],
 }));
 
 app.use(express.json());
